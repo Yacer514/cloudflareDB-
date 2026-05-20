@@ -1,4 +1,4 @@
-name = "my-worker"
+name = "cloudflaredb-pages"
 main = "worker.js"
 compatibility_date = "2026-05-20"
 
@@ -6,3 +6,7 @@ compatibility_date = "2026-05-20"
 bindings = [
   { name = "MyDatabase", class_name = "MyDatabase" }
 ]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["MyDatabase"]
