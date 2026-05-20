@@ -6,7 +6,7 @@ export default {
 
     // Serve index.html at root
     if (url.pathname === "/") {
-      return new Response(await fetch("https://your-cloudflare-pages-site.pages.dev"), {
+      return new Response(await fetch("https://cloudflaredb-pages.yasir-ali.workers.dev/"), {
         headers: { "content-type": "text/html" }
       });
     }
