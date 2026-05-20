@@ -1,0 +1,7 @@
+name = "my-worker"
+main = "worker.js"
+compatibility_date = "2026-05-20"
+
+[[durable_objects]]
+name = "MyDatabase"
+class_name = "MyDatabase"

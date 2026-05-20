@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cloudflare Database Demo</title>
+</head>
+<body>
+  <h2>Add Record</h2>
+  <form id="myForm">
+    <input type="text" id="name" placeholder="Name">
+    <input type="text" id="email" placeholder="Email">
+    <button type="submit">Add</button>
+  </form>
+
+  <h3>Stored Records:</h3>
+  <pre id="output"></pre>
+
+  <script>
+    document.getElementById("myForm").onsubmit = async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+
+      await fetch("/add", {
+        method: "POST",
+        body: JSON.stringify({ name, email })
+      });
+
+      const res = await fetch("/list");
+      const data = await res.json();
+      document.getElementById("output").innerText = JSON.stringify(data, null, 2);
+    };
+  </script>
+</body>
+</html>
