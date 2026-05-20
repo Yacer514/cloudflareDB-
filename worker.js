@@ -1,7 +1,17 @@
 export default {
   async fetch(request, env) {
+    const url = new URL(request.url);
     const id = env.MyDatabase.idFromName("main");
     const obj = env.MyDatabase.get(id);
+
+    // Serve index.html at root
+    if (url.pathname === "/") {
+      return new Response(await fetch("https://your-cloudflare-pages-site.pages.dev"), {
+        headers: { "content-type": "text/html" }
+      });
+    }
+
+    // Forward other routes to Durable Object
     return obj.fetch(request);
   }
 }
