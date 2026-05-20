@@ -1,13 +1,14 @@
 export default {
   async fetch(request, env) {
-    return env.MyDatabase.fetch(request);
+    const id = env.MyDatabase.idFromName("main");
+    const obj = env.MyDatabase.get(id);
+    return obj.fetch(request);
   }
 }
 
 export class MyDatabase {
   constructor(state, env) {
-    this.state = state;
-    this.storage = state.storage; // acts like a table
+    this.storage = state.storage;
   }
 
   async fetch(request) {
